@@ -10,10 +10,10 @@ def onData(instance, args):
     group = opt['group'] if 'group' in opt else None
 
     if opt['type'] == 'both':
-      logging.debug('DEBUG[%s]: %s' % (instance.id, val))
+      logging.debug('DEBUG[%s]: \n%s' % (instance.id, val))
       instance.debug(val, None, group, id)
     elif opt['type'] == 'logs':
-      logging.debug('DEBUG[%s]: %s' % (instance.id, val))
+      logging.debug('DEBUG[%s]: \n%s' % (instance.id, val))
     else:
       instance.debug(val, None, group, id)
 

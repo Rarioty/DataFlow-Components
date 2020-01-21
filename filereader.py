@@ -2,10 +2,11 @@ import traceback
 import time
 
 def onData(instance, args):
-  data = args[0].data
-  start = time.process_time()
-
   try:
+    payload = args[0]
+    data = payload.data
+    start = time.process_time()
+
     if data is None or not isinstance(data, dict) or 'path' not in data:
       # No correct input
       if not 'filename' in instance.options:
@@ -65,28 +66,28 @@ If incomming object has a path property then filename option is ignored.
 Example of incomming object
 \`\`\`javascript
 {
-	path: '/public/robots.txt',
-	type: 'text', // optional, default text
-	encoding: 'utf8' // optional, default utf8
+  path: '/public/robots.txt',
+  type: 'text', // optional, default text
+  encoding: 'utf8' // optional, default utf8
 }
 \`\`\`
 """,
   'html': """<div class="padding">
-	<div class="row">
-		<div class="col-md-6">
-			<div data-jc="textbox" data-jc-path="filename" data-jc-config="placeholder:/public/robots.txt">Filename</div>
-			<div class="help m">Filename relative to the application root.</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div data-jc="dropdown" data-jc-path="type" data-jc-config="items:Buffer|buffer,Text|text">Read as</div>
-		</div>
-		<div class="col-md-6">
-			<div data-jc="textbox" data-jc-path="encoding" data-jc-config="placeholder:utf8">Encoding (default 'utf8')</div>
-			<div class="help m">Only for 'Read as text'</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-6">
+      <div data-jc="textbox" data-jc-path="filename" data-jc-config="placeholder:/public/robots.txt">Filename</div>
+      <div class="help m">Filename relative to the application root.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div data-jc="dropdown" data-jc-path="type" data-jc-config="items:Buffer|buffer,Text|text">Read as</div>
+    </div>
+    <div class="col-md-6">
+      <div data-jc="textbox" data-jc-path="encoding" data-jc-config="placeholder:utf8">Encoding (default 'utf8')</div>
+      <div class="help m">Only for 'Read as text'</div>
+    </div>
+  </div>
 </div>""",
   'install': install
 }
